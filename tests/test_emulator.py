@@ -191,3 +191,9 @@ class TestEmulator(object):
         with pytest.raises(FieldTruncateError):
             em.fill_field(1, 1, "foobar", 5)
             pytest.fail('length limit 5, but got "foobar"')
+
+    @mock.patch("py3270.Emulator.exec_command")
+    def test_get_screen(self, m_ec):
+        em = MEmulator.mock()
+        em.get_screen()
+        m_ec.assert_called_once_with(b"PrintText(string)")

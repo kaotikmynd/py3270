@@ -500,3 +500,7 @@ class Emulator(object):
     def save_screen(self, file_path):
         self.exec_command("PrintText(html,file,{0})".format(file_path).encode("ascii"))
 
+    def get_screen(self):
+         command = self.exec_command("PrintText(string)".encode("ascii"))
+         return "\n".join(command.data)
+
